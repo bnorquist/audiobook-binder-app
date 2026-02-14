@@ -1,4 +1,5 @@
 # Audiobook Binder
+<img width="1024" height="1024" alt="Gemini_Generated_Image_5d6pkb5d6pkb5d6p" src="https://github.com/user-attachments/assets/5165cc43-015f-41ac-8ca2-693e0751ec12" />
 
 A native macOS app that combines a folder of MP3 files into a single M4B audiobook with chapters, metadata, and cover art.
 
