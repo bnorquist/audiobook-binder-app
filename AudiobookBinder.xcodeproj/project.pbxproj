@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000001 /* AudiobookBinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001; };
+		A10000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002; };
+		A10000003 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000003; };
+		A10000004 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000004; };
+		A10000005 /* BookMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000005; };
+		A10000006 /* FFProbeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000006; };
+		A10000007 /* FFmpegService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000007; };
+		A10000008 /* MetadataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000008; };
+		A10000009 /* FileDiscoveryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000009; };
+		A10000010 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010; };
+		A10000011 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011; };
+		A10000012 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012; };
+		A10000013 /* ConvertingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000013; };
+		A10000014 /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014; };
+		A10000015 /* ChapterRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000015; };
+		A10000016 /* CoverArtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000016; };
+		A10000017 /* MetadataFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000017; };
+		A10000018 /* BundledBinary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018; };
+		A10000019 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000019; };
+		A10000020 /* FFMetadataWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020; };
+		A10000021 /* FilenameClean.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000021; };
+		A10000022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000022; };
+		A10000023 /* AudiobookBinder.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = A20000023; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000001 /* AudiobookBinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiobookBinderApp.swift; sourceTree = "<group>"; };
+		A20000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000003 /* AudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
+		A20000004 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
+		A20000005 /* BookMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMetadata.swift; sourceTree = "<group>"; };
+		A20000006 /* FFProbeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFProbeService.swift; sourceTree = "<group>"; };
+		A20000007 /* FFmpegService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFmpegService.swift; sourceTree = "<group>"; };
+		A20000008 /* MetadataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataService.swift; sourceTree = "<group>"; };
+		A20000009 /* FileDiscoveryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDiscoveryService.swift; sourceTree = "<group>"; };
+		A20000010 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		A20000011 /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
+		A20000012 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		A20000013 /* ConvertingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertingView.swift; sourceTree = "<group>"; };
+		A20000014 /* DoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
+		A20000015 /* ChapterRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterRowView.swift; sourceTree = "<group>"; };
+		A20000016 /* CoverArtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtView.swift; sourceTree = "<group>"; };
+		A20000017 /* MetadataFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataFormView.swift; sourceTree = "<group>"; };
+		A20000018 /* BundledBinary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledBinary.swift; sourceTree = "<group>"; };
+		A20000019 /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
+		A20000020 /* FFMetadataWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMetadataWriter.swift; sourceTree = "<group>"; };
+		A20000021 /* FilenameClean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilenameClean.swift; sourceTree = "<group>"; };
+		A20000022 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A20000023 /* AudiobookBinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudiobookBinder.entitlements; sourceTree = "<group>"; };
+		A20000099 /* AudiobookBinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudiobookBinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A30000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A40000001 = {
+			isa = PBXGroup;
+			children = (
+				A40000002 /* AudiobookBinder */,
+				A40000099 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000002 /* AudiobookBinder */ = {
+			isa = PBXGroup;
+			children = (
+				A40000003 /* App */,
+				A40000004 /* Models */,
+				A40000005 /* Services */,
+				A40000006 /* ViewModels */,
+				A40000007 /* Views */,
+				A40000009 /* Utilities */,
+				A20000022 /* Assets.xcassets */,
+				A20000023 /* AudiobookBinder.entitlements */,
+			);
+			path = AudiobookBinder;
+			sourceTree = "<group>";
+		};
+		A40000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A20000001 /* AudiobookBinderApp.swift */,
+				A20000002 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A40000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000003 /* AudioFile.swift */,
+				A20000004 /* Chapter.swift */,
+				A20000005 /* BookMetadata.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A40000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000006 /* FFProbeService.swift */,
+				A20000007 /* FFmpegService.swift */,
+				A20000008 /* MetadataService.swift */,
+				A20000009 /* FileDiscoveryService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A40000006 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A20000010 /* AppViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A40000007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000011 /* ImportView.swift */,
+				A20000012 /* EditView.swift */,
+				A20000013 /* ConvertingView.swift */,
+				A20000014 /* DoneView.swift */,
+				A40000008 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A40000008 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A20000015 /* ChapterRowView.swift */,
+				A20000016 /* CoverArtView.swift */,
+				A20000017 /* MetadataFormView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A40000009 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A20000018 /* BundledBinary.swift */,
+				A20000019 /* DurationFormatter.swift */,
+				A20000020 /* FFMetadataWriter.swift */,
+				A20000021 /* FilenameClean.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A40000099 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A20000099 /* AudiobookBinder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A50000001 /* AudiobookBinder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A70000003 /* Build configuration list for PBXNativeTarget "AudiobookBinder" */;
+			buildPhases = (
+				A60000001 /* Sources */,
+				A30000001 /* Frameworks */,
+				A60000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudiobookBinder;
+			productName = AudiobookBinder;
+			productReference = A20000099 /* AudiobookBinder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A80000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A50000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A70000001 /* Build configuration list for PBXProject "AudiobookBinder" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A40000001;
+			productRefGroup = A40000099 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A50000001 /* AudiobookBinder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A60000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000022 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A60000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000001 /* AudiobookBinderApp.swift in Sources */,
+				A10000002 /* ContentView.swift in Sources */,
+				A10000003 /* AudioFile.swift in Sources */,
+				A10000004 /* Chapter.swift in Sources */,
+				A10000005 /* BookMetadata.swift in Sources */,
+				A10000006 /* FFProbeService.swift in Sources */,
+				A10000007 /* FFmpegService.swift in Sources */,
+				A10000008 /* MetadataService.swift in Sources */,
+				A10000009 /* FileDiscoveryService.swift in Sources */,
+				A10000010 /* AppViewModel.swift in Sources */,
+				A10000011 /* ImportView.swift in Sources */,
+				A10000012 /* EditView.swift in Sources */,
+				A10000013 /* ConvertingView.swift in Sources */,
+				A10000014 /* DoneView.swift in Sources */,
+				A10000015 /* ChapterRowView.swift in Sources */,
+				A10000016 /* CoverArtView.swift in Sources */,
+				A10000017 /* MetadataFormView.swift in Sources */,
+				A10000018 /* BundledBinary.swift in Sources */,
+				A10000019 /* DurationFormatter.swift in Sources */,
+				A10000020 /* FFMetadataWriter.swift in Sources */,
+				A10000021 /* FilenameClean.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A90000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A90000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A90000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AudiobookBinder/AudiobookBinder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Audiobook Binder";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiobook.binder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A90000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AudiobookBinder/AudiobookBinder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Audiobook Binder";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiobook.binder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A70000001 /* Build configuration list for PBXProject "AudiobookBinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000001 /* Debug */,
+				A90000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A70000003 /* Build configuration list for PBXNativeTarget "AudiobookBinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A90000003 /* Debug */,
+				A90000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = A80000001 /* Project object */;
+}

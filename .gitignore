@@ -1,0 +1,16 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad
+xcuserdata/
+
+# Static ffmpeg/ffprobe binaries (user-provided, ~80-100MB each)
+AudiobookBinder/Resources/ffmpeg
+AudiobookBinder/Resources/ffprobe
+
+# macOS
+.DS_Store
+
+# SwiftPM
+.swiftpm/
