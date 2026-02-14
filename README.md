@@ -49,6 +49,16 @@ The output bitrate matches the highest input bitrate (clamped to 64-256 kbps). T
 
 Shows the completed file with size, duration, and chapter count. Use **Show in Finder** to locate the file or **Convert Another File** to start over.
 
+
+
+<img width="1041" height="770" alt="Screenshot 2026-02-14 at 9 27 08 AM" src="https://github.com/user-attachments/assets/151622d5-4e5e-440d-a1cc-083457e802d3" />
+
+
+
+
+
+
+
 ## Development
 
 ### Prerequisites
