@@ -7,13 +7,17 @@ struct ConvertingView: View {
         VStack(spacing: 24) {
             Spacer()
 
-            Text("Converting...")
+            Image(systemName: "waveform")
+                .font(.system(size: 48))
+                .foregroundStyle(.secondary)
+                .symbolEffect(.variableColor.iterative)
+
+            Text("Converting to M4B")
                 .font(.title)
 
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 ProgressView(value: viewModel.conversionProgress)
                     .progressViewStyle(.linear)
-                    .frame(maxWidth: 400)
 
                 HStack {
                     Text("\(Int(viewModel.conversionProgress * 100))%")
@@ -21,23 +25,34 @@ struct ConvertingView: View {
 
                     Spacer()
 
-                    Text(elapsedTimeString)
+                    Text(durationProgressString)
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                 }
-                .frame(maxWidth: 400)
                 .font(.callout)
-            }
 
-            Button("Cancel") {
-                viewModel.cancelConversion()
+                Text(elapsedTimeString)
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+                    .monospacedDigit()
             }
-            .controlSize(.large)
+            .padding(24)
+            .frame(maxWidth: 420)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(.ultraThinMaterial)
+            )
 
             Spacer()
         }
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var durationProgressString: String {
+        let current = DurationFormatter.format(viewModel.conversionCurrentMs)
+        let total = DurationFormatter.format(viewModel.conversionTotalMs)
+        return "\(current) of \(total)"
     }
 
     private var elapsedTimeString: String {

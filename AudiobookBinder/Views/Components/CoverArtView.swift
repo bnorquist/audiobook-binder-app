@@ -12,22 +12,24 @@ struct CoverArtView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 200, maxHeight: 200)
-                    .cornerRadius(8)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(radius: 2)
 
                 HStack(spacing: 8) {
                     Button("Change...") { onChoose() }
-                    Button("Remove") { onRemove() }
-                        .foregroundStyle(.red)
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                    Button("Remove", role: .destructive) { onRemove() }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
                 }
-                .font(.callout)
             } else {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(.quaternary)
+                    .fill(.ultraThinMaterial)
                     .frame(width: 150, height: 150)
                     .overlay {
                         VStack(spacing: 8) {
-                            Image(systemName: "photo")
+                            Image(systemName: "book.closed")
                                 .font(.title)
                                 .foregroundStyle(.secondary)
                             Text("No Cover")
@@ -37,7 +39,8 @@ struct CoverArtView: View {
                     }
 
                 Button("Choose Image...") { onChoose() }
-                    .font(.callout)
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
             }
         }
     }

@@ -10,22 +10,21 @@ struct ImportView: View {
             Spacer()
 
             if viewModel.isProbing {
-                VStack(spacing: 16) {
-                    ProgressView()
-                        .scaleEffect(1.5)
-                    Text("Probing audio files...")
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                }
+                probingCard
             } else {
                 dropZone
             }
 
             if let error = viewModel.importError {
-                Text(error)
-                    .foregroundStyle(.red)
+                Label(error, systemImage: "exclamationmark.triangle.fill")
                     .font(.callout)
-                    .padding(.horizontal)
+                    .padding(12)
+                    .frame(maxWidth: 400)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.red.opacity(0.1))
+                            .stroke(.red.opacity(0.3), lineWidth: 1)
+                    )
             }
 
             Spacer()
@@ -34,11 +33,27 @@ struct ImportView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
+    private var probingCard: some View {
+        VStack(spacing: 16) {
+            ProgressView()
+                .scaleEffect(1.5)
+            Text("Analyzing audio files...")
+                .font(.title3)
+                .foregroundStyle(.secondary)
+        }
+        .padding(32)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.ultraThinMaterial)
+        )
+    }
+
     private var dropZone: some View {
         VStack(spacing: 16) {
             Image(systemName: "folder.badge.plus")
                 .font(.system(size: 48))
                 .foregroundStyle(isTargeted ? Color.accentColor : .secondary)
+                .symbolEffect(.bounce, value: isTargeted)
 
             Text("Drop a folder of MP3 files here")
                 .font(.title2)
@@ -49,17 +64,24 @@ struct ImportView: View {
             Button("Choose Folder...") {
                 viewModel.chooseFolder()
             }
+            .buttonStyle(.borderedProminent)
             .controlSize(.large)
         }
         .frame(maxWidth: 400, maxHeight: 300)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .strokeBorder(
-                    isTargeted ? Color.accentColor : Color.secondary.opacity(0.3),
-                    style: StrokeStyle(lineWidth: 2, dash: [8, 4])
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .strokeBorder(
+                            isTargeted ? Color.accentColor : Color.secondary.opacity(0.2),
+                            lineWidth: 1
+                        )
                 )
         }
+        .scaleEffect(isTargeted ? 1.02 : 1.0)
+        .animation(.easeInOut(duration: 0.2), value: isTargeted)
         .onDrop(of: [.fileURL], isTargeted: $isTargeted) { providers in
             handleDrop(providers)
         }

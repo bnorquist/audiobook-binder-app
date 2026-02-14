@@ -4,17 +4,26 @@ struct EditView: View {
     @Bindable var viewModel: AppViewModel
 
     var body: some View {
-        VStack(spacing: 0) {
-            HSplitView {
-                chapterList
-                    .frame(minWidth: 300)
+        HSplitView {
+            chapterList
+                .frame(minWidth: 300)
 
-                rightPanel
-                    .frame(minWidth: 280, idealWidth: 320)
+            rightPanel
+                .frame(minWidth: 280, idealWidth: 320)
+        }
+        .safeAreaInset(edge: .bottom) {
+            if let error = viewModel.conversionError {
+                HStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundStyle(.red)
+                    Text(error)
+                        .font(.callout)
+                        .lineLimit(2)
+                }
+                .padding(12)
+                .frame(maxWidth: .infinity)
+                .background(.ultraThinMaterial)
             }
-
-            Divider()
-            bottomBar
         }
     }
 
@@ -23,7 +32,7 @@ struct EditView: View {
     private var chapterList: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("Chapters")
+                Label("Chapters", systemImage: "list.number")
                     .font(.headline)
                 Spacer()
                 Text("\(viewModel.chapters.count) files")
@@ -35,6 +44,7 @@ struct EditView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 12)
+            .background(.bar)
 
             Divider()
 
@@ -61,7 +71,6 @@ struct EditView: View {
     private var rightPanel: some View {
         ScrollView {
             VStack(spacing: 20) {
-                // Cover Art
                 CoverArtView(
                     coverURL: viewModel.coverImageURL,
                     onChoose: { viewModel.chooseCoverImage() },
@@ -71,37 +80,10 @@ struct EditView: View {
 
                 Divider()
 
-                // Metadata Form
                 MetadataFormView(metadata: $viewModel.metadata)
             }
             .padding(.horizontal)
             .padding(.bottom, 16)
         }
-    }
-
-    // MARK: - Bottom Bar
-
-    private var bottomBar: some View {
-        HStack {
-            Button("Back") {
-                viewModel.startOver()
-            }
-
-            Spacer()
-
-            if let error = viewModel.conversionError {
-                Text(error)
-                    .foregroundStyle(.red)
-                    .font(.callout)
-                    .lineLimit(2)
-            }
-
-            Button("Convert") {
-                viewModel.startConversion()
-            }
-            .controlSize(.large)
-            .keyboardShortcut(.return, modifiers: .command)
-        }
-        .padding()
     }
 }

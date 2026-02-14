@@ -10,5 +10,6 @@ struct AudiobookBinderApp: App {
                 .frame(minWidth: 700, minHeight: 500)
         }
         .defaultSize(width: 900, height: 650)
+        .windowToolbarStyle(.unified(showsTitle: true))
     }
 }

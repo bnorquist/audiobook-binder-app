@@ -18,11 +18,11 @@ struct ChapterRowView: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "line.3.horizontal")
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.quaternary)
                 .font(.caption)
 
             Text("\(index + 1).")
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.tertiary)
                 .monospacedDigit()
                 .frame(width: 30, alignment: .trailing)
 
@@ -41,7 +41,7 @@ struct ChapterRowView: View {
             Spacer()
 
             Text(DurationFormatter.format(chapter.durationMs))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.tertiary)
                 .monospacedDigit()
                 .font(.callout)
         }

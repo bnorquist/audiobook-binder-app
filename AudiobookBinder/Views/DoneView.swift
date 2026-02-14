@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DoneView: View {
     @Bindable var viewModel: AppViewModel
+    @State private var appeared = false
 
     var body: some View {
         VStack(spacing: 24) {
@@ -10,32 +11,48 @@ struct DoneView: View {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 56))
                 .foregroundStyle(.green)
+                .symbolEffect(.bounce, value: appeared)
 
-            Text("Conversion Complete")
+            Text("Audiobook Created")
                 .font(.title)
 
-            VStack(spacing: 8) {
+            VStack(spacing: 12) {
                 if let url = viewModel.outputURL {
-                    Text(url.lastPathComponent)
+                    Label(url.lastPathComponent, systemImage: "doc.richtext")
                         .font(.headline)
                 }
 
-                Text(fileSizeString)
+                Label(fileSizeString, systemImage: "internaldrive")
                     .foregroundStyle(.secondary)
 
-                Text("Duration: \(viewModel.formattedTotalDuration)")
+                Label("Duration: \(viewModel.formattedTotalDuration)", systemImage: "clock")
+                    .foregroundStyle(.secondary)
+
+                Label("\(viewModel.chapters.count) chapters", systemImage: "list.number")
                     .foregroundStyle(.secondary)
             }
+            .padding(24)
+            .frame(maxWidth: 360)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(.ultraThinMaterial)
+            )
 
             HStack(spacing: 16) {
-                Button("Reveal in Finder") {
+                Button {
                     viewModel.revealInFinder()
+                } label: {
+                    Label("Show in Finder", systemImage: "folder")
                 }
+                .buttonStyle(.bordered)
                 .controlSize(.large)
 
-                Button("Convert Another") {
+                Button {
                     viewModel.startOver()
+                } label: {
+                    Label("Convert Another File", systemImage: "plus")
                 }
+                .buttonStyle(.borderedProminent)
                 .controlSize(.large)
             }
 
@@ -43,6 +60,13 @@ struct DoneView: View {
         }
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .opacity(appeared ? 1 : 0)
+        .offset(y: appeared ? 0 : 12)
+        .onAppear {
+            withAnimation(.easeOut(duration: 0.5)) {
+                appeared = true
+            }
+        }
     }
 
     private var fileSizeString: String {
