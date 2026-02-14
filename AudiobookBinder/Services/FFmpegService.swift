@@ -11,8 +11,8 @@ enum FFmpegService {
         var percent: Int { Int(fraction * 100) }
     }
 
-    /// Check if the aac_at (Apple AudioToolbox) encoder is available.
-    static func detectEncoder() -> String {
+    /// Cached encoder result — detected once per app launch.
+    private static let cachedEncoder: String = {
         let ffmpeg = BundledBinary.ffmpeg
         let process = Process()
         process.executableURL = ffmpeg
@@ -20,7 +20,7 @@ enum FFmpegService {
 
         let stdout = Pipe()
         process.standardOutput = stdout
-        process.standardError = Pipe()
+        process.standardError = FileHandle.nullDevice
 
         do {
             try process.run()
@@ -33,23 +33,19 @@ enum FFmpegService {
         } catch {}
 
         return "aac"
-    }
+    }()
 
     /// Run the full ffmpeg conversion, streaming progress updates.
-    ///
-    /// Returns an `AsyncStream<Progress>` that yields progress updates.
-    /// The stream completes when conversion finishes or is cancelled.
     static func convert(
         audioFiles: [AudioFile],
         metadata: BookMetadata,
         chapters: [Chapter],
         bitrate: Int,
         coverPath: String?,
-        outputURL: URL,
-        task: Task<Void, Never>? = nil
+        outputURL: URL
     ) -> AsyncThrowingStream<Progress, Error> {
         let totalMs = audioFiles.reduce(0) { $0 + $1.durationMs }
-        let encoder = detectEncoder()
+        let encoder = cachedEncoder
 
         return AsyncThrowingStream { continuation in
             let workItem = DispatchWorkItem {
@@ -116,6 +112,7 @@ enum FFmpegService {
 
         // Build ffmpeg command
         var args = [
+            "-v", "error",          // Suppress noisy stderr output
             "-f", "concat",
             "-safe", "0",
             "-i", concatURL.path,
@@ -146,48 +143,71 @@ enum FFmpegService {
         let process = Process()
         process.executableURL = ffmpeg
         process.arguments = args
+        process.qualityOfService = .userInitiated
 
         let stdout = Pipe()
         let stderr = Pipe()
         process.standardOutput = stdout
         process.standardError = stderr
 
+        // Drain stderr asynchronously to prevent pipe buffer filling up
+        // and blocking ffmpeg. Capture for error reporting if needed.
+        var stderrData = Data()
+        let stderrLock = NSLock()
+        stderr.fileHandleForReading.readabilityHandler = { handle in
+            let data = handle.availableData
+            if !data.isEmpty {
+                stderrLock.lock()
+                stderrData.append(data)
+                stderrLock.unlock()
+            }
+        }
+
         try process.run()
 
         // Parse progress from stdout
         let fileHandle = stdout.fileHandleForReading
         var leftover = ""
+        var lastYieldedPercent = -1
 
-        while process.isRunning {
+        while true {
             if Task.isCancelled {
                 process.terminate()
+                process.waitUntilExit()
+                stderr.fileHandleForReading.readabilityHandler = nil
                 throw AudiobookError.conversionCancelled
             }
 
             let data = fileHandle.availableData
-            guard !data.isEmpty else { break }
+            guard !data.isEmpty else { break }  // EOF — process closed stdout
 
             let chunk = leftover + (String(data: data, encoding: .utf8) ?? "")
             let lines = chunk.components(separatedBy: "\n")
             leftover = lines.last ?? ""
 
             for line in lines.dropLast() {
-                let trimmed = line.trimmingCharacters(in: .whitespaces)
-                if trimmed.hasPrefix("out_time_us=") {
-                    if let valueStr = trimmed.split(separator: "=").last,
-                       let timeUs = Int(valueStr) {
+                if line.hasPrefix("out_time_us=") {
+                    let eqIdx = line.index(line.startIndex, offsetBy: 12)
+                    if let timeUs = Int(line[eqIdx...]) {
                         let timeMs = timeUs / 1000
-                        continuation.yield(Progress(currentMs: timeMs, totalMs: totalMs))
+                        let pct = totalMs > 0 ? min(100, timeMs * 100 / totalMs) : 0
+                        // Only yield on percentage change to reduce overhead
+                        if pct != lastYieldedPercent {
+                            lastYieldedPercent = pct
+                            continuation.yield(Progress(currentMs: timeMs, totalMs: totalMs))
+                        }
                     }
                 }
             }
         }
 
         process.waitUntilExit()
+        stderr.fileHandleForReading.readabilityHandler = nil
 
         guard process.terminationStatus == 0 else {
-            let errData = stderr.fileHandleForReading.readDataToEndOfFile()
-            let errString = String(data: errData, encoding: .utf8) ?? "Unknown error"
+            stderrLock.lock()
+            let errString = String(data: stderrData, encoding: .utf8) ?? "Unknown error"
+            stderrLock.unlock()
             throw AudiobookError.ffmpegFailed(errString)
         }
     }

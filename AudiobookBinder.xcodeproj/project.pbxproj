@@ -30,6 +30,8 @@
 		A10000021 /* FilenameClean.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000021; };
 		A10000022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000022; };
 		A10000023 /* AudiobookBinder.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = A20000023; };
+		A10000024 /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = A20000024; };
+		A10000025 /* ffprobe in Resources */ = {isa = PBXBuildFile; fileRef = A20000025; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		A20000021 /* FilenameClean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilenameClean.swift; sourceTree = "<group>"; };
 		A20000022 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20000023 /* AudiobookBinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudiobookBinder.entitlements; sourceTree = "<group>"; };
+		A20000024 /* ffmpeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ffmpeg; sourceTree = "<group>"; };
+		A20000025 /* ffprobe */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ffprobe; sourceTree = "<group>"; };
 		A20000099 /* AudiobookBinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudiobookBinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +91,7 @@
 				A40000006 /* ViewModels */,
 				A40000007 /* Views */,
 				A40000009 /* Utilities */,
+				A40000010 /* Resources */,
 				A20000022 /* Assets.xcassets */,
 				A20000023 /* AudiobookBinder.entitlements */,
 			);
@@ -164,6 +169,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		A40000010 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A20000024 /* ffmpeg */,
+				A20000025 /* ffprobe */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A40000099 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000022 /* Assets.xcassets in Resources */,
+				A10000024 /* ffmpeg in Resources */,
+				A10000025 /* ffprobe in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
