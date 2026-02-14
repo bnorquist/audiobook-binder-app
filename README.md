@@ -13,11 +13,44 @@ A native macOS app that combines a folder of MP3 files into a single M4B audiobo
 - **M4B conversion** — uses ffmpeg to concatenate and re-encode with AAC (prefers Apple's `aac_at` encoder when available)
 - **Real-time progress** — percentage, elapsed/remaining time, and duration tracking during conversion
 
-## Setup
+## Installation
+
+1. Download `AudiobookBinder.dmg` from the [latest release](../../releases/latest)
+2. Open the DMG and drag **Audiobook Binder** to your Applications folder
+3. On first launch, right-click the app and select **Open** (macOS requires this for apps from unidentified developers)
+
+After the first open, the app launches normally.
+
+## Usage
+
+### 1. Import
+
+Drop a folder of MP3 files onto the window, or click **Choose Folder** to select one. The app probes each file with `ffprobe` to read duration, bitrate, sample rate, and ID3 tags.
+
+### 2. Edit
+
+The edit view has two panels:
+
+- **Left — Chapter list**: Files become chapters, sorted in Finder order (natural sort). Drag to reorder, click to rename. Chapter titles come from ID3 `title` tags when present, otherwise from cleaned filenames (e.g., `01_intro.mp3` becomes "Intro").
+- **Right — Metadata & cover art**: Title, author, narrator, series, year, genre, and description fields. The app pre-fills these from consistent ID3 tags across all files. Add or change cover art with the image picker.
+
+Click **Convert** in the toolbar (or press Cmd+Return) when ready. A save dialog lets you choose the output location.
+
+### 3. Convert
+
+The app concatenates all MP3s and re-encodes to AAC in an M4B container using ffmpeg. Progress shows percentage, duration processed vs. total, and estimated time remaining. Click **Cancel** in the toolbar to abort.
+
+The output bitrate matches the highest input bitrate (clamped to 64-256 kbps). The app prefers Apple's hardware-accelerated `aac_at` encoder when available, falling back to the software `aac` encoder.
+
+### 4. Done
+
+Shows the completed file with size, duration, and chapter count. Use **Show in Finder** to locate the file or **Convert Another File** to start over.
+
+## Development
 
 ### Prerequisites
 
-The app bundles its own `ffmpeg` and `ffprobe` binaries — they are not included in the repo due to their size (~80-100MB each).
+The app bundles its own `ffmpeg` and `ffprobe` binaries — they are not included in the repo due to their size.
 
 1. **Download static ffmpeg and ffprobe binaries for macOS:**
 
@@ -56,30 +89,20 @@ open AudiobookBinder.xcodeproj
 
 Requires macOS 14+ and Xcode 15+.
 
-## Usage
+### Building the DMG
 
-### 1. Import
+```bash
+# Build Release configuration
+xcodebuild -scheme AudiobookBinder -configuration Release build
 
-Drop a folder of MP3 files onto the window, or click **Choose Folder** to select one. The app probes each file with `ffprobe` to read duration, bitrate, sample rate, and ID3 tags.
-
-### 2. Edit
-
-The edit view has two panels:
-
-- **Left — Chapter list**: Files become chapters, sorted in Finder order (natural sort). Drag to reorder, click to rename. Chapter titles come from ID3 `title` tags when present, otherwise from cleaned filenames (e.g., `01_intro.mp3` becomes "Intro").
-- **Right — Metadata & cover art**: Title, author, narrator, series, year, genre, and description fields. The app pre-fills these from consistent ID3 tags across all files. Add or change cover art with the image picker.
-
-Click **Convert** in the toolbar (or press Cmd+Return) when ready. A save dialog lets you choose the output location.
-
-### 3. Convert
-
-The app concatenates all MP3s and re-encodes to AAC in an M4B container using ffmpeg. Progress shows percentage, duration processed vs. total, and estimated time remaining. Click **Cancel** in the toolbar to abort.
-
-The output bitrate matches the highest input bitrate (clamped to 64-256 kbps). The app prefers Apple's hardware-accelerated `aac_at` encoder when available, falling back to the software `aac` encoder.
-
-### 4. Done
-
-Shows the completed file with size, duration, and chapter count. Use **Show in Finder** to locate the file or **Convert Another File** to start over.
+# Create DMG (adjust DerivedData path as needed)
+APP_PATH="$(xcodebuild -scheme AudiobookBinder -configuration Release -showBuildSettings | grep -m1 BUILT_PRODUCTS_DIR | awk '{print $3}')/AudiobookBinder.app"
+STAGING=$(mktemp -d)
+cp -R "$APP_PATH" "$STAGING/"
+ln -s /Applications "$STAGING/Applications"
+hdiutil create -volname "Audiobook Binder" -srcfolder "$STAGING" -ov -format UDZO AudiobookBinder.dmg
+rm -rf "$STAGING"
+```
 
 ## Architecture
 
